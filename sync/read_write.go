@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-func read(data chan int) {
+func read(data <-chan int) {
 	for d := range data {
 		fmt.Printf("%d ", d)
 	}
 }
-func write(d int, data chan int) bool {
+func write(d int, data chan<- int) bool {
 	select {
 	case data <- d:
 		return true
